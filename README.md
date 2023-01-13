@@ -1,4 +1,3 @@
-
 # kohi
 
 <p align="center">A powerfull schema validator</p>
@@ -9,6 +8,24 @@
 ![PyPI - Format](https://img.shields.io/pypi/format/kohi)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kohi)
 ![PyPI - Package Version](https://img.shields.io/pypi/v/kohi)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/kohi)
+
+## Instalation
+
+Via Poetry:
+```sh
+poetry add kohi
+```
+
+Via PIP:
+```sh
+pip install kohi
+```
+
+Via GitHub (recommended only in dev env):
+```sh
+git clone https://github.com/natanfeitosa/kohi.git && cd kohi && pip install .
+```
 
 ## Quickstart
 
