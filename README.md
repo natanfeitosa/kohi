@@ -3,9 +3,9 @@
 
 <p align="center">A powerfull schema validator</p>
 
-<div align="center">
-![GitHub Repo stars](https://img.shields.io/github/stars/natanfeitosa/kohi)![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/natanfeitosa/kohi/pytest.yml?label=Pytest&logo=github)![GitHub](https://img.shields.io/github/license/natanfeitosa/kohi)
-</div>
+![GitHub Repo stars](https://img.shields.io/github/stars/natanfeitosa/kohi)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/natanfeitosa/kohi/pytest.yml?label=Pytest&logo=github)
+![GitHub](https://img.shields.io/github/license/natanfeitosa/kohi)
 
 ## Quickstart
 
