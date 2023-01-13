@@ -6,6 +6,9 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/natanfeitosa/kohi)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/natanfeitosa/kohi/pytest.yml?label=Pytest&logo=github)
 ![GitHub](https://img.shields.io/github/license/natanfeitosa/kohi)
+![PyPI - Format](https://img.shields.io/pypi/format/kohi)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kohi)
+![PyPI - Package Version](https://img.shields.io/pypi/v/kohi)
 
 ## Quickstart
 
