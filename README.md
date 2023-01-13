@@ -9,7 +9,7 @@
 
 ## Quickstart
 
-To validate a type you can import your schema validator from `kohi` or `from kohi.<type> import <type>Schema>`
+To validate a type you can import your schema validator from `kohi` or `from kohi.<type> import <type>Schema`
 
 e.g.
 
