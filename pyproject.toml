@@ -4,6 +4,23 @@ version = "0.1.0"
 description = "A powerfull schema validator"
 readme = "README.md"
 authors = ["Natan Santos <natansantosapps@gmail.com>"]
+homepage = "https://github.com/natanfeitosa/kohi#readme"
+repository = "https://github.com/natanfeitosa/kohi"
+keywords = ["data", "validator", "schema", "json", "science"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Testing",
+    "Typing :: Typed"
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -11,6 +28,9 @@ python = "^3.8"
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
 mypy = "^0.991"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/natanfeitosa/kohi/issues"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
