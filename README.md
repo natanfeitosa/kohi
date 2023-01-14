@@ -1,3 +1,4 @@
+
 # kohi
 
 <p align="center">A powerfull schema validator</p>
@@ -98,6 +99,21 @@ inherits from [`BaseSchema`](#baseschema)
 
 ### StringSchema
 inherits from [`BaseSchema`](#baseschema)
+
+* `min(min_length): Self`
+  > Validate if the data len is greater than or equal to min_length
+* `length(length): Self`
+  > Validate if the data len equal to length
+* `max(max_length): Self`
+  > Validate if the data len is less than or equal to max_length
+* `url(): Self`
+  > Validate if the data is an url
+* `uuid(): Self`
+  > Validate if the data is a valid uuid
+* `starts_with(text): Self`
+  > Validate if the data starts with text
+* `ends_with(text): Self`
+  > Validate if the data ends with text
 
 ## Dev env
 
