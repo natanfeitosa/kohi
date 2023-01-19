@@ -54,3 +54,9 @@ class NumberSchema(BaseSchema):
 
     def negative(self):
         return self.lt(0)
+
+    def nonpositive(self):
+        return self.lte(0)
+
+    def nonnegative(self):
+        return self.gte(0)

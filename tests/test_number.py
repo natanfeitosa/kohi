@@ -55,3 +55,15 @@ def test_negative():
     assert not n.validate(1)
     assert n.validate(-1)
     
+def test_nonpositive():
+    n = NumberSchema().nonpositive()
+
+    assert not n.validate(1)
+    assert n.validate(-1)
+
+def test_nonnegative():
+    n = NumberSchema().nonnegative()
+
+    assert n.validate(1)
+    assert not n.validate(-1)
+    
