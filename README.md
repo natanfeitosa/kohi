@@ -96,6 +96,10 @@ inherits from [`BaseSchema`](#baseschema)
   > Just an alias for `gt(0)`
 * `negative(): Self`
   > Just an alias for `lt(0)`
+* `nonpositive(): Self`
+  > Just an alias for `lte(0)`
+* `nonnegative(): Self`
+  > Just an alias for `gte(0)`
 
 ### StringSchema
 inherits from [`BaseSchema`](#baseschema)
