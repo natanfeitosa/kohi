@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `Number.nonpositive()` by [@natanfeitosa](https://github.com/natanfeitosa/) ([#1](https://github.com/natanfeitosa/kohi/issues/1))
+- `Number.nonnegative()` by [@natanfeitosa](https://github.com/natanfeitosa/) ([#1](https://github.com/natanfeitosa/kohi/issues/1))
+
 ### Changed
 
 ### Fixed
