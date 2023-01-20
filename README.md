@@ -10,6 +10,7 @@
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kohi)
 ![PyPI - Package Version](https://img.shields.io/pypi/v/kohi)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/kohi)
+[![Open Source Helpers](https://www.codetriage.com/natanfeitosa/kohi/badges/users.svg)](https://www.codetriage.com/natanfeitosa/kohi)
 
 ## Instalation
 
