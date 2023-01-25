@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `BaseSchema.label(text)` by [@natanfeitosa](https://github.com/natanfeitosa/) ([#4](https://github.com/natanfeitosa/kohi/issues/4))
+
 ### Changed
 
 ### Fixed
