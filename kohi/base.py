@@ -32,6 +32,7 @@ class BaseSchema:
         self._validators: t.List['Validator'] = [Validator('is-type', type_validator)]
         self._throw: bool = False
         self._errors: t.List[str] = []
+        self._label: str = ''
 
     def __repr__(self):
         return f'<{self.__class__.__name__} of kohi>'
@@ -75,5 +76,9 @@ class BaseSchema:
     
     def throw(self):
         self._throw = True
+        return self
+
+    def label(self, text: str):
+        self._label = text
         return self
         
