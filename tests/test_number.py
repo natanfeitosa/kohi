@@ -19,6 +19,11 @@ def test_int():
     assert n.validate(1)
     assert not n.validate(0.1)
 
+def test_custom_messages():
+    n = NumberSchema().lt(1)
+
+    assert not n.validate(1)
+
 def test_lt():
     n = NumberSchema().lt(1)
 

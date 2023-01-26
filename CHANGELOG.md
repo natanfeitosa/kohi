@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- All validation methods, including the constructor, now accept a custom error message ([#5](https://github.com/natanfeitosa/kohi/issues/5))
+
 ### Fixed
 
 ### Removed
