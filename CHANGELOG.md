@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `BaseSchema.label(text)` by [@natanfeitosa](https://github.com/natanfeitosa/) ([#4](https://github.com/natanfeitosa/kohi/issues/4))
+- `EnumSchema` by [@natanfeitosa](https://github.com/natanfeitosa/) ([#3](https://github.com/natanfeitosa/kohi/issues/3))
+- `EnumSchema.one_of(opts)` by [@natanfeitosa](https://github.com/natanfeitosa/) ([#3](https://github.com/natanfeitosa/kohi/issues/3))
+- `EnumSchema.not_one_of(opts)` by [@natanfeitosa](https://github.com/natanfeitosa/) ([#3](https://github.com/natanfeitosa/kohi/issues/3))
 
 ### Changed
 
