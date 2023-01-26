@@ -6,7 +6,7 @@ def test_add_validator():
 
     assert b.validate(arg)
 
-    def more_than_five(data):
+    def more_than_five(data, schema):
         if len(data) < 6:
             return 'must have more than 5 items'
     b.add_validator('more-than-five', more_than_five)
