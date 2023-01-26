@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kohi"
-version = "0.2.0"
+version = "0.3.0"
 description = "A powerfull schema validator"
 readme = "README.md"
 authors = ["Natan Santos <natansantosapps@gmail.com>"]
