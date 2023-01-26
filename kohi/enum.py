@@ -1,12 +1,14 @@
 import typing as t
 from .base import BaseSchema
 
+__all__ = ('EnumSchema',)
+
 
 class EnumSchema(BaseSchema):
     def __init__(self, message: t.Optional[str] = None):
         super().__init__((object,), message=message) #type: ignore
 
-    def one_of(opts: t.Iterable, message: t.Optional[str] = None):
+    def one_of(self, opts: t.Iterable, message: t.Optional[str] = None):
         def validator(data, schema):
             label = schema._label
 
@@ -22,7 +24,7 @@ class EnumSchema(BaseSchema):
                 
         return self.add_validator('one-of', validator)
 
-    def not_one_of(opts: t.Iterable, message: t.Optional[str] = None):
+    def not_one_of(self, opts: t.Iterable, message: t.Optional[str] = None):
         def validator(data, schema):
             label = schema._label
 
