@@ -60,6 +60,8 @@ print(n.validate(2023)) # False
 > or `kohi.NumberSchema`
 * [`kohi.string.StringSchema`](#stringschema)
 > or `kohi.StringSchema`
+* [`kohi.enum.EnumSchema`](#enumschema)
+> or `kohi.EnumSchema`
 
 ## Methods
 
@@ -119,6 +121,14 @@ inherits from [`BaseSchema`](#baseschema)
   > Validate if the data starts with text
 * `ends_with(text): Self`
   > Validate if the data ends with text
+
+### EnumSchema
+inherits from [`BaseSchema`](#baseschema)
+
+* `one_of(opts): Self`
+  > Validate if the data is in opts
+* `not_one_of(opts): Self`
+  > Validate that data is different from the values in opts
 
 ## Dev env
 
