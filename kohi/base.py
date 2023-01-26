@@ -30,7 +30,7 @@ def def_type_validator(message):
 
             nonlocal message
             if not message:
-                message = '{label} type is not of expected types: {types}'
+                message = '{label} type is not of expected type(s): {types}'
             
             t_str = ', '.join(map(lambda t: t.__name__, types))
             return message.format(label=label, types=t_str)
