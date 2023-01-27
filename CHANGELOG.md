@@ -34,3 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `Number.nonpositive()` by [@natanfeitosa](https://github.com/natanfeitosa/) ([#1](https://github.com/natanfeitosa/kohi/issues/1))
 - `Number.nonnegative()` by [@natanfeitosa](https://github.com/natanfeitosa/) ([#1](https://github.com/natanfeitosa/kohi/issues/1))
+
+## [v0.1.0](https://github.com/natanfeitosa/kohi/releases/tag/v0.1.0)
+
+initial release
