@@ -28,9 +28,12 @@ class DictSchema(BaseSchema):
                 nonlocal schema, key
                 validate = schema.label(parent._prepare_new_label(key))
 
-                if not validate.validate(getattr(data, key, None)):
+                _data = None
+                if key in data:
+                    _data = data[key]
+
+                if not validate.validate(_data):
                     new_errors = [*parent.errors, *validate.errors]
-                    print(new_errors)
                     parent._errors = new_errors
 
             self.add_validator(f'valide-{key}', validator)
@@ -43,6 +46,5 @@ class DictSchema(BaseSchema):
             error = validator(data, self) # type: ignore
             if error:
                 self._errors.append(error)
-        print('len:', len(self.errors))
         self._handle_errors()                
         return len(self.errors) == 0
