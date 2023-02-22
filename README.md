@@ -1,4 +1,3 @@
-
 # kohi
 
 <p align="center">A powerfull schema validator</p>
@@ -62,6 +61,8 @@ print(n.validate(2023)) # False
 > or `kohi.StringSchema`
 * [`kohi.enum.EnumSchema`](#enumschema)
 > or `kohi.EnumSchema`
+* [`kohi.dictionary.DictSchema`](#dictschema)
+> or `kohi.DictSchema`
 
 ## Methods
 
@@ -129,6 +130,12 @@ inherits from [`BaseSchema`](#baseschema)
   > Validate if the data is in opts
 * `not_one_of(opts): Self`
   > Validate that data is different from the values in opts
+
+### DictSchema
+inherits from [`BaseSchema`](#baseschema)
+
+* `props(**props): Self`
+  > Defines the structure of the dictionary in the format `[key]: ClassValidator`
 
 ## Dev env
 
