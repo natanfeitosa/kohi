@@ -67,7 +67,7 @@ class BaseSchema:
         if not self._throw or len(self._errors) < 1:
             return
             
-        raise ValidationError(message)
+        raise ValidationError(self.errors)
 
     def add_validator(
         self,

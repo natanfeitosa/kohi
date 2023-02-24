@@ -1,4 +1,6 @@
 from kohi.base import BaseSchema
+from kohi.exceptions import ValidationError
+
 
 def test_add_validator():
     b = BaseSchema(list)
@@ -33,3 +35,12 @@ def test_custom_messages():
     
     assert not ob1.label('object_test').validate(True)
     assert ob1.errors[0] == message.format(label='object_test', types='tuple')
+
+def test_raise():
+    b = BaseSchema(tuple).throw()
+
+    try:
+        assert b.validate(True)
+    except Exception as error:
+        if isinstance(error, ValidationError):
+            assert True
