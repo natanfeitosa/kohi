@@ -1,5 +1,6 @@
 import typing as t
 from dataclasses import dataclass
+from .exceptions import ValidationError
 
 __all__ = ('Validator', 'BaseSchema')
 
@@ -65,13 +66,7 @@ class BaseSchema:
     def _handle_errors(self):
         if not self._throw or len(self._errors) < 1:
             return
-        
-        message = self._errors[0]
-        
-        if len(self._errors) > 1:
-            message = f'{len(self._errors)} errors occurred'
             
-        ValidationError = type('ValidationError', (Exception,), {})
         raise ValidationError(message)
 
     def add_validator(
