@@ -58,3 +58,10 @@ def test_parse():
     b = BaseSchema(str)
 
     assert b.parse('10') == '10'
+
+def test_mutations():
+    b = BaseSchema(str)
+    b.add_mutation(lambda a: a.replace('k', 'h'))
+    b.add_mutation(lambda a: a.replace('l', 'K'))
+
+    assert b.parse('loki') == 'Kohi'
