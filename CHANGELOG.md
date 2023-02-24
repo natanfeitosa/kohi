@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `DictSchema` by [@natanfeitosa](https://github.com/natanfeitosa/) ([#9](https://github.com/natanfeitosa/kohi/issues/9))
+- `BaseSchema.parse(data)` by [@natanfeitosa](https://github.com/natanfeitosa/)
+- `BaseSchema.add_mutation(mutation)` by [@natanfeitosa](https://github.com/natanfeitosa/)
 
 ### Changed
 
