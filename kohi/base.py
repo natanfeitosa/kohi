@@ -1,5 +1,8 @@
+import copy
 import typing as t
+from functools import reduce
 from dataclasses import dataclass
+from .exceptions import ValidationError, ParseError
 
 __all__ = ('Validator', 'BaseSchema')
 
@@ -52,6 +55,7 @@ class BaseSchema:
         self._throw: bool = False
         self._errors: t.List[str] = []
         self._label: str = ''
+        self._mutations: t.List[t.Callable[[t.Any], t.Any]] = []
 
     def __repr__(self):
         return f'<{self.__class__.__name__} of kohi>'
@@ -65,14 +69,8 @@ class BaseSchema:
     def _handle_errors(self):
         if not self._throw or len(self._errors) < 1:
             return
-        
-        message = self._errors[0]
-        
-        if len(self._errors) > 1:
-            message = f'{len(self._errors)} errors occurred'
             
-        ValidationError = type('ValidationError', (Exception,), {})
-        raise ValidationError(message)
+        raise ValidationError(self.errors)
 
     def add_validator(
         self,
@@ -85,15 +83,42 @@ class BaseSchema:
         self._validators.append(Validator(name=name, fn=fn))
         return self
 
-    def validate(self, data: t.Any):
-        """Validate the given data against the schema"""
-        self.reset()
+    def _run_validators(self, data: t.Any):
         for validator in self._validators:
             error = validator(data, self) # type: ignore
             if error:
                 self._errors.append(error)
+
+    def _validate(self, data: t.Any):
+        self._run_validators(data)
         self._handle_errors()                
         return len(self.errors) == 0
+
+    def validate(self, data: t.Any):
+        """Validate the given data against the schema"""
+        self.reset()
+        return self._validate(data)
+
+    def parse(self, data: t.Any):
+        """Analyzes the data and returns after passing the validation step"""
+        cloned = copy.deepcopy(data)
+
+        try:
+            if not self.validate(cloned):
+                self._handle_errors()
+        except Exception as e:
+            raise ParseError(str(e)) from e
+
+        if self._mutations:
+            # compose
+            mutation = reduce(lambda a, b: lambda c: a(b(c)), reversed(self._mutations), lambda s: s)
+            cloned = mutation(cloned)
+
+        return cloned
+
+    def add_mutation(self, mutation: t.Callable[[t.Any], t.Any]):
+        self._mutations.append(mutation)
+        return self
 
     def reset(self):
         self._errors = []
