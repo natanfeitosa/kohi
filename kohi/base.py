@@ -1,3 +1,4 @@
+import copy
 import typing as t
 from dataclasses import dataclass
 from .exceptions import ValidationError
@@ -95,6 +96,18 @@ class BaseSchema:
         """Validate the given data against the schema"""
         self.reset()
         return self._validate(data)
+
+    def parse(self, data: t.Any):
+        """Analyzes the data and returns after passing the validation step"""
+        cloned = copy.deepcopy(data)
+
+        try:
+            if not self.validate(cloned):
+                self._handle_errors()
+        except Exception as e:
+            raise ParseError(str(e)) from e          
+
+        return cloned
 
     def reset(self):
         self._errors = []
