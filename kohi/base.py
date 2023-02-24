@@ -85,15 +85,21 @@ class BaseSchema:
         self._validators.append(Validator(name=name, fn=fn))
         return self
 
-    def validate(self, data: t.Any):
-        """Validate the given data against the schema"""
-        self.reset()
+    def _run_validators(self, data: t.Any):
         for validator in self._validators:
             error = validator(data, self) # type: ignore
             if error:
                 self._errors.append(error)
+
+    def _validate(self, data: t.Any):
+        self._run_validators(data)
         self._handle_errors()                
         return len(self.errors) == 0
+
+    def validate(self, data: t.Any):
+        """Validate the given data against the schema"""
+        self.reset()
+        return self._validate(data)
 
     def reset(self):
         self._errors = []
