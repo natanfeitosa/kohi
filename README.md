@@ -75,6 +75,10 @@ print(n.validate(2023)) # False
   > Reset error list
 * `throw(): Self`
   > By default no errors are thrown, but when this method is chained a `ValidationError` will be thrown
+* `add_mutation(): Self`
+  > Add a mutation function than will run after the `validate` method. P.S. Will only be executed in the `parse` method
+* `parse(data): typeof data`
+  > Run the `validate` method, the mutations and return a deep clone of data
 
 ### `NumberSchema`
 inherits from [`BaseSchema`](#baseschema)
