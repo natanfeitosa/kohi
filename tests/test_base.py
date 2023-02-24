@@ -1,6 +1,17 @@
 from kohi.base import BaseSchema
-from kohi.exceptions import ValidationError
+from kohi.exceptions import ValidationError, ParseError
 
+def assert_supress_error(fn, error=ValidationError, negate=False):
+    def wrap(*args, **kwargs):
+        try:
+            if negate:
+                assert not fn(*args, **kwargs)
+            else:
+                assert fn(*args, **kwargs)
+        except Exception as e:
+            assert isinstance(e, error)
+            
+    return wrap
 
 def test_add_validator():
     b = BaseSchema(list)
@@ -37,10 +48,13 @@ def test_custom_messages():
     assert ob1.errors[0] == message.format(label='object_test', types='tuple')
 
 def test_raise():
-    b = BaseSchema(tuple).throw()
+    se = assert_supress_error(BaseSchema(tuple).throw().validate)
+    se(True)
+    
+    se = assert_supress_error(BaseSchema(str).throw().validate)
+    se(10)
 
-    try:
-        assert b.validate(True)
-    except Exception as error:
-        if isinstance(error, ValidationError):
-            assert True
+def test_parse():
+    b = BaseSchema(str)
+
+    assert b.parse('10') == '10'
