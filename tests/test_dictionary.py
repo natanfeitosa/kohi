@@ -14,14 +14,9 @@ def test_base():
 def test_errors_list():
     d = DictSchema().props(
         name=StringSchema().length(4),
-        age=NumberSchema().lte(1)
+        age=NumberSchema().lte(1).default(1)
     )
 
     assert d.validate({ 'name': 'kohi', 'age': 1 })
     assert not d.validate({ 'name': 'Github', 'age': 15 })
-    # assert not d.validate({ 'name': 'Gitlab' })
-
-# def test_not_one_of():
-#     assert EnumSchema().not_one_of([1]).validate('1')
-#     assert not EnumSchema().not_one_of([1]).validate(1)
-#     assert not EnumSchema().not_one_of(['1']).validate('1')
+    assert d.throw().validate({ 'name': 'Gitlab' })
