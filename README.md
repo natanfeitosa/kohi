@@ -79,6 +79,12 @@ print(n.validate(2023)) # False
   > Add a mutation function than will run after the `validate` method. P.S. Will only be executed in the `parse` method
 * `parse(data): typeof data`
   > Run the `validate` method, the mutations and return a deep clone of data
+* `default(data): Self`
+  > Set a default value for when the validator receives None and you don't want to generate an error
+* `optional(): Self`
+  > Allow values None
+* `required(error_message=None): Self`
+  > Mark the schema as required. Does not allow values None
 
 ### `NumberSchema`
 inherits from [`BaseSchema`](#baseschema)
