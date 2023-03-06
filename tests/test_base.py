@@ -1,17 +1,14 @@
 from kohi.base import BaseSchema
 from kohi.exceptions import ValidationError, ParseError
 
-def assert_supress_error(fn, error=ValidationError, negate=False):
-    def wrap(*args, **kwargs):
-        try:
-            if negate:
-                assert not fn(*args, **kwargs)
-            else:
-                assert fn(*args, **kwargs)
-        except Exception as e:
-            assert isinstance(e, error)
-            
-    return wrap
+def assert_raise(fn, error=ValidationError, negate=False):
+    try:
+        if negate:
+            assert not fn()
+        else:
+            assert fn()
+    except Exception as e:
+        assert isinstance(e, error)
 
 def test_add_validator():
     b = BaseSchema(list)
@@ -48,11 +45,8 @@ def test_custom_messages():
     assert ob1.errors[0] == message.format(label='object_test', types='tuple')
 
 def test_raise():
-    se = assert_supress_error(BaseSchema(tuple).throw().validate)
-    se(True)
-    
-    se = assert_supress_error(BaseSchema(str).throw().validate)
-    se(10)
+    assert_raise(lambda: BaseSchema(tuple).throw().validate(True))
+    assert_raise(lambda: BaseSchema(str).throw().validate(10))
 
 def test_parse():
     b = BaseSchema(str)
@@ -65,3 +59,10 @@ def test_mutations():
     b.add_mutation(lambda a: a.replace('l', 'K'))
 
     assert b.parse('loki') == 'Kohi'
+
+def test_required():
+    b = BaseSchema(int).label('test')
+    
+    assert not b.validate(None)
+    assert b.optional().parse(None) == None
+    assert_raise(lambda: b.required().parse(None), ParseError)

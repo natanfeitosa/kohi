@@ -38,13 +38,6 @@ class DictSchema(BaseSchema):
 
             self.add_validator(f'valide-{key}', validator)
 
-    def validate(self, data: t.Any):
-        """Validate the given data against the schema"""
-        self.reset()
+    def _validate(self, data: t.Any, checks=True):
         self._validate_props()
-        for validator in self._validators:
-            error = validator(data, self) # type: ignore
-            if error:
-                self._errors.append(error)
-        self._handle_errors()                
-        return len(self.errors) == 0
+        return super()._validate(data, checks)

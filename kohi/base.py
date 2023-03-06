@@ -57,6 +57,10 @@ class BaseSchema:
         self._label: str = ''
         self._mutations: t.List[t.Callable[[t.Any], t.Any]] = []
 
+        self._is_required = True
+        self._required_error = '{label} is a required field'
+        self._default_value = None
+
     def __repr__(self):
         return f'<{self.__class__.__name__} of kohi>'
 
@@ -89,9 +93,21 @@ class BaseSchema:
             if error:
                 self._errors.append(error)
 
-    def _validate(self, data: t.Any):
-        self._run_validators(data)
-        self._handle_errors()                
+    def _return_or_default(self, data: t.Any):
+        if not data is None:
+            return data
+
+        if self._is_required and self._default_value is None:
+            error = self._required_error.format(label=self._label)
+            self._errors.insert(0, error)
+            return
+
+        return copy.deepcopy(self._default_value)
+
+    def _validate(self, data: t.Any, checks=True):
+        if checks and (data := self._return_or_default(data)) != None:
+            self._run_validators(data)
+        self._handle_errors()
         return len(self.errors) == 0
 
     def validate(self, data: t.Any):
@@ -101,11 +117,13 @@ class BaseSchema:
 
     def parse(self, data: t.Any):
         """Analyzes the data and returns after passing the validation step"""
-        cloned = copy.deepcopy(data)
+        cloned = copy.deepcopy(self._return_or_default(data))
+
+        if (cloned != data and data == None) or (cloned == data == None and not self._is_required):
+            return cloned
 
         try:
-            if not self.validate(cloned):
-                self._handle_errors()
+            self.throw()._validate(cloned, False)
         except Exception as e:
             raise ParseError(str(e)) from e
 
@@ -129,5 +147,18 @@ class BaseSchema:
 
     def label(self, text: str):
         self._label = text
+        return self
+
+    def default(self, data: t.Any):
+        self._default_value = data
+        return self
+
+    def optional(self):
+        self._is_required = False    
+        return self
+
+    def required(self, message: str='{label} is a required field'):
+        self._is_required = True
+        self._required_error = message
         return self
         
